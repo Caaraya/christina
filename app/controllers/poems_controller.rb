@@ -1,20 +1,22 @@
 class PoemsController < ApplicationController
 
+attr_reader :poems
+attr_reader :poem
+
 	def initialize
 	@poems = []
 	@poem = nil
 	end
 	
 	def index
-		Poems.find_each do |poem|
-			poem.where(published: true)
-			@poems.push(poem)
-		end
+	
+	@poems = Poem.where(published: true)
+	
 	end
 	
 	def show
 	
-	@poem = Poems.find(params[:id])
+	@poem = Poem.find(params[:id])
 	
 	end
 end

@@ -1,18 +1,13 @@
-<% 
-controller = poems_controller.new
-page = ""
-controller.index.each{|p|
-page += simple_format("#{p.title}\n"
-%>
-
 <%
-simple_format(page)
+page = ""
+controller.poems.each do |item|
+	page += simple_format("#{item.title}\n")
+
+	page += simple_format("#{item.author}\n")
+	
+	page += simple_format(link_to('Read',
+	'poems/' + item.id.to_s + '/show/'))
+end
 %>
 
-<h2>Hello World!</h2>
-
-<h1><% Poems#index %></h1>
-
-<p>Find me in app/views/poems/index.html.erb</p>
-
-<% end %>
+<%= simple_format(page)%>
